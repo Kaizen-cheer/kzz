@@ -1,70 +1,343 @@
-<!-- แก้เฉพาะส่วน CSS สี -->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaizen Shop - Official Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-:root {
-    --bg-outer: #1a1a2e;
-    --bg-paper: #0f172a;
-    --pink: #a855f7;
-    --pink-dark: #7e22ce;
-    --blue: #9333ea;
-    --blue-dark: #6b21a8;
-    --green: #22c55e;
-    --yellow: #eab308;
-    --text-main: #e5e7eb;
-    --text-light: #9ca3af;
+:root{
+--bg:#0F0C1B; 
+--main:#8A2BE2;
+--dark:#3D0C5A;
+--white:#1A1528;
+--glow:rgba(138,43,226,0.4);
+--accent:#D8B4F8;
+--status-red:#FF4B4B;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Mitr',sans-serif;}
+
+body{
+background:var(--bg);
+display:flex;
+justify-content:center;
+position: relative;
+overflow-x: hidden;
+min-height: 100vh;
+color: #FFFFFF;
+}
+
+/* --- พื้นหลังอิโมจิฟุ้งๆ --- */
+.bg-emojis {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  font-size: 24px;
+}
+
+.floating-emoji {
+  position: absolute;
+  animation: floatBG 15s infinite linear;
+  opacity: 0.25;
+}
+
+@keyframes floatBG {
+  0% { transform: translateY(110vh) rotate(0deg); }
+  100% { transform: translateY(-10vh) rotate(360deg); }
+}
+
+.container{
+max-width:500px;
+width:100%;
+padding:20px 15px 40px;
+z-index: 1;
+}
+
+.section{
+background:var(--white);
+border-radius:20px;
+padding:25px 20px;
+margin-bottom:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+border:2px solid var(--main);
+}
+
+h1,h2,h3{color:#E2D5F8;}
+.center{text-align:center;}
+
+/* --- โลโก้และอิโมจิรอบโลโก้ --- */
+.logo-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+width:150px;height:150px;
+border-radius:50%;
+overflow:hidden;
+box-shadow:0 6px 20px var(--glow);
+border: 4px solid var(--main);
+position: relative;
+z-index: 2;
+}
+
+.logo img{width:100%;height:100%;object-fit:cover;}
+
+.logo-deco {
+  position: absolute;
+  font-size: 28px;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.badges{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-bottom:20px;
+}
+
+.badge{
+background:rgba(26, 21, 40, 0.8);
+padding:8px 16px;
+border-radius:25px;
+box-shadow:0 4px 10px var(--glow);
+font-size:13px;
+color:#E2D5F8;
+border: 1px solid var(--main);
+}
+
+.btn{
+display:block;
+text-align:center;
+padding:14px;
+border-radius:25px;
+text-decoration:none;
+margin-top:15px;
+font-weight:500;
+transition: 0.3s;
+display: flex;
+align-items: center;
+justify-content:center;
+gap: 8px;
+}
+
+.btn-outline{
+background:#1A1528;
+border:2px dashed var(--main);
+color:#E2D5F8;
+}
+
+.btn-outline:hover {
+background:rgba(138,43,226,0.15);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--status-red);
+  border-radius: 50%;
+  display: inline-block;
+  animation: dotBlink 1.2s infinite ease-in-out;
+  box-shadow: 0 0 8px var(--status-red);
+}
+
+@keyframes dotBlink {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.btn-main{
+background:var(--main);
+color:#fff;
+box-shadow: 0 4px 15px var(--glow);
+}
+
+.btn-main:hover{
+opacity: 0.9;
+transform: translateY(-2px);
+}
+
+.step{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-bottom:12px;
+color: #D2C4EC;
+}
+
+.step-num{
+background:var(--main);
+color:#fff;
+width:26px;height:26px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:13px;
+flex-shrink:0;
+margin-top:2px;
+}
+
+.price-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+background:#251D3A;
+padding:10px 15px;
+border-radius:15px;
+border-left: 4px solid var(--main);
+color: #E2D5F8;
+}
+
+.price-tag{
+background:var(--main);
+color:#fff;
+padding:3px 12px;
+border-radius:20px;
+font-size:14px;
+white-space: nowrap;
+}
+
+.footer{
+text-align:center;
+margin-top:30px;
+}
+
+.socials{
+display:flex;
+gap:8px;
+justify-content:center;
+margin-top:15px;
+}
+
+.socials a{
+flex:1;
+max-width:100px;
+text-align:center;
+padding:8px;
+border-radius:25px;
+background:#251D3A;
+text-decoration:none;
+color:#E2D5F8;
+font-size:13px;
+border:1px solid var(--main);
+transition: 0.3s;
+}
+
+.socials a:hover {
+background: var(--main);
+color: #fff;
+}
+
+.small{font-size:12px;opacity:.7;margin-top:10px;color:#A294C4;}
+
+.rule-box {
+background: #251D3A;
+padding: 15px;
+border-radius: 15px;
+font-size: 14px;
+margin-top: 15px;
+border: 1px dashed var(--main);
+color: #D2C4EC;
+line-height: 1.6;
 }
 </style>
-<!-- เปลี่ยน Title -->
-<title>Kaizen Shop</title>
-<!-- เปลี่ยน Header -->
-<div class="scrap-title bg-purple-500 transform -rotate-3 rounded-md">KAIZEN</div>
-<div class="scrap-title bg-gray-900 transform rotate-2 rounded-md">SHOP</div>
-<!-- เปลี่ยน Intro -->
-<p class="mt-2 font-medium text-gray-300 font-decor-th">
-ร้านไคเซ็นพร้อมรับคิวนะคะ👾<br>
-รับทำระบบดิสคอร์ด และอื่นๆ
-</p>
-<!-- Kaizen Shop Info -->
-<div class="note-box bg-purple-900 text-white border border-purple-700 relative z-10 mt-6">
-    <div class="tape tape-center w-20"></div>
+</head>
 
-    <h3 class="font-bold text-center text-[16px] mb-3 font-decor-en">
-        KAIZEN SHOP INFO
-    </h3>
+<body>
+  <div class="bg-emojis">
+    <span class="floating-emoji" style="left: 10%; animation-delay: 0s;">👾</span>
+    <span class="floating-emoji" style="left: 25%; animation-delay: 2s;">💜</span>
+    <span class="floating-emoji" style="left: 45%; animation-delay: 4s;">✨</span>
+    <span class="floating-emoji" style="left: 70%; animation-delay: 6s;">👾</span>
+    <span class="floating-emoji" style="left: 85%; animation-delay: 8s;">✨</span>
+  </div>
 
-    <div class="text-[13px] space-y-2">
-        <p><b>🧵 งานที่รับทำ</b></p>
-        <ul class="list-disc pl-4 space-y-1">
-            <li>รับทำเซิร์ฟเวอร์ดิสคอร์ด</li>
-            <li>รับทำระบบดิสคอร์ด</li>
-            <li>รับแคปรูป / อัดคลิป Valorant</li>
-        </ul>
+<div class="container">
 
-        <p class="mt-3"><b>🔮 ตัวอย่างงาน</b></p>
-        <div class="text-[11px] space-y-1 break-all">
-            <p>https://drive.google.com/drive/folders/1AjWMfnfjPhbN1KXIAZrWWBE8DzLFjyi8</p>
-            <p>https://drive.google.com/drive/folders/1Auo4hNfo6QluY1NEmCrKtNlMVlMvDul8</p>
-            <p>https://drive.google.com/drive/folders/1AoDTqSfuzb0LwWrOoGn3Ncx1jZzTr4Zh</p>
-            <p>https://drive.google.com/drive/folders/1BBjwnJrtlTPCtg3Z9hj2ZVp28HRCHu-o</p>
-            <p>https://drive.google.com/drive/folders/1BHLqEhizB9CPaWioMKgSnad0wcMkEKhf</p>
-            <p>https://drive.google.com/drive/folders/1B62mxRk-EqcBFT0_iK-N5CnOOTfuAkpb</p>
-            <p>https://drive.google.com/drive/folders/1AxLC70rOEztJ9IXFDkGbK_qhzE8XRSUx</p>
-        </div>
+<div class="section center" style="border:none;box-shadow:none;background:transparent;">
 
-        <p class="mt-3"><b>📋 เงื่อนไข</b></p>
-        <ul class="list-disc pl-4 space-y-1">
-            <li>คิวปกติ 1–3 วัน</li>
-            <li>งานเร่ง +90 / +150 / +300</li>
-        </ul>
-
-        <p class="mt-3"><b>📍 กฎของร้าน</b></p>
-        <ul class="list-disc pl-4 space-y-1">
-            <li>โอนแล้วไม่คืนเงินทุกกรณี</li>
-            <li>ยกงานหลังบรีฟ หัก 50%</li>
-            <li>ยกเลิกหลังเช็คงาน = ไม่คืน</li>
-        </ul>
-
-        <p class="mt-3"><b>📱 ติดต่อ</b></p>
-        <p>Facebook: https://www.facebook.com/kaizen.shop.cheer</p>
-        <p>Discord: https://discord.gg/Q589MD6d33</p>
-    </div>
+<div class="logo-wrapper">
+  <span class="logo-deco" style="top: 0; left: 10%;">👾</span>
+  <span class="logo-deco" style="bottom: 10%; right: 5%;">💜</span>
+  <span class="logo-deco" style="top: 20%; right: 0%;">✨</span>
+  <div class="logo">
+    <img src="thx_you_kub_.png" alt="Kaizen Shop logo">
+  </div>
 </div>
+
+<h1>Kaizen Shop</h1>
+<p style="color:#D2C4EC;opacity:.8;margin:10px 0 20px;">
+ร้านไคเซ็นพร้อมรับคิวนะคะ👾
+</p>
+
+<div class="badges">
+<div class="badge">🎮 รับทำเซิร์ฟเวอร์ดิสคอร์ด</div>
+<div class="badge">⚙️ รับทำระบบดิสคอร์ด</div>
+<div class="badge">📸 แคปรูป/อัดคลิป Valorant</div>
+</div>
+
+<a href="https://discord.gg/Q589MD6d33" class="btn btn-outline">
+<span class="status-dot"></span> เปิดรับคิวนะคะ 💜💜
+</a>
+</div>
+
+<div class="section">
+<h2>📝 ขั้นตอนการสั่งซื้อ</h2>
+<div class="step"><div class="step-num">1</div><div>ดูตัวอย่างงานได้จากลิงก์ Portfolio ด้านล่าง</div></div>
+<div class="step"><div class="step-num">2</div><div>แจ้งรายละเอียดงาน โทนสี และสิ่งที่ต้องการ (บรีฟให้ละเอียด)</div></div>
+<div class="step"><div class="step-num">3</div><div>โอนเงินเพื่อเริ่มงาน (โอน = เริ่มคิว)</div></div>
+<div class="step"><div class="step-num">4</div><div>รอรับงานเช็คตามลำดับคิวของวันนั้น</div></div>
+
+<a href="https://drive.google.com/drive/folders/1AjWMfnfjPhbN1KXIAZrWWBE8DzLFjyi8?usp=drive_link" class="btn btn-main">ดูตัวอย่างผลงาน คลิ๊ก 🔮</a>
+<a href="https://discord.gg/Q589MD6d33" class="btn btn-outline">เข้าดิสคอร์ดเพื่อสั่งงาน ✨</a>
+</div>
+
+<div class="section">
+<h2>💰 เงื่อนไข & เรทงานเร่ง</h2>
+<div class="price-row"><span>⏱️ คิวปกติรองาน</span><span class="price-tag">1-3 วัน</span></div>
+<div class="price-row"><span>⚡ งานเร่ง ระดับ 1</span><span class="price-tag">+90฿</span></div>
+<div class="price-row"><span>⚡ งานเร่ง ระดับ 2</span><span class="price-tag">+150฿</span></div>
+<div class="price-row"><span>⚡ งานเร่ง ระดับสูงสุด</span><span class="price-tag">+300฿</span></div>
+
+<div class="rule-box">
+<strong>📍 กฎของร้านไคเซ็น:</strong><br>
+• ถ้าโอนเงินแล้วทางร้านไม่คืนเงินทุกกรณีนะคะ<br>
+• หากยกเลิกงานหลังส่งบรีฟมาแล้ว คืนเงิน 50% ค่ะ<br>
+• หากยกเลิกหลังจากเช็คงาน = ไม่คืนเงินค่ะ
+</div>
+</div>
+
+<div class="footer">
+<a href="https://discord.gg/Q589MD6d33" class="btn btn-main">สั่งงาน / สอบถามได้ที่ Discord 🎀</a>
+<div class="socials">
+<a href="https://www.facebook.com/kaizen.shop.cheer?">Facebook</a>
+<a href="https://discord.gg/Q589MD6d33">Discord</a>
+<a href="https://drive.google.com/drive/folders/1AjWMfnfjPhbN1KXIAZrWWBE8DzLFjyi8?usp=drive_link">Portfolio</a>
+</div>
+<p class="small">© 2026 Kaizen Shop - ขอบคุณที่ใช้บริการค่ะ</p>
+</div>
+
+</div>
+</body>
+</html>
